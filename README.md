@@ -254,3 +254,29 @@ Proyecto académico desarrollado para Ingeniería de Software.
 # Licencia
 
 Uso académico y educativo.
+
+---
+
+# ¿Cómo correr este proyecto?
+
+Para levantar la API (FastAPI) y acceder a las vistas y al panel de documentación, sigue estos pasos:
+
+## 1. Prerrequisitos
+1. Tener instalado **[Python](https://www.python.org/downloads/)**.
+   > **Importante:** Asegúrate de marcar la opción "Add Python to PATH" al instalar.
+2. Tener instalado y corriendo **XAMPP** (o un servidor MySQL local).
+3. Asegúrate de que el servicio **MySQL** esté iniciado en el panel de XAMPP.
+4. Crear una base de datos vacía en MySQL (usando phpMyAdmin) llamada `sistema_facturacion`.
+
+## 2. Ejecución Automática (Windows)
+En la carpeta principal del proyecto hay un archivo llamado `run.bat`.
+1. Dale **doble clic a `run.bat`**.
+2. Este script se encargará automáticamente de:
+   - Crear un entorno virtual.
+   - Instalar las dependencias necesarias (`fastapi`, `sqlalchemy`, etc.).
+   - Encender el servidor en tu máquina.
+
+## 3. Acceso al Sistema
+Una vez que veas en la consola que el servidor está encendido, abre tu navegador web:
+- 📊 **Dashboard Visual:** [http://localhost:8000/dashboard](http://localhost:8000/dashboard)
+- ⚙️ **Documentación API (Swagger):** [http://localhost:8000/docs](http://localhost:8000/docs)
