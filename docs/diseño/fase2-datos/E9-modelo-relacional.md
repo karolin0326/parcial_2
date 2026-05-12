@@ -1,113 +1,137 @@
-# Modelo Relacional
-## Sistema de Monitoreo Inteligente de Facturación con IA
+# 🗄️ Modelo Relacional  
+# Sistema Inteligente de Monitoreo de Facturación con IA
 
 ---
 
-# ¿Qué es un Modelo Relacional?
-
-El modelo relacional es la representación lógica de la base de datos basada en tablas, atributos, claves primarias (PK) y claves foráneas (FK).
-
-Este modelo se deriva del Modelo Entidad Relación (MER) y permite estructurar la información de manera organizada para su implementación en sistemas gestores de bases de datos como MySQL o MariaDB.
-
-En el proyecto del Sistema de Monitoreo Inteligente de Facturación con IA, el modelo relacional permite almacenar la información relacionada con:
-- usuarios,
-- clientes,
-- facturas,
-- pagos,
-- alertas,
-- auditoría,
-- y análisis inteligentes realizados por IA.
-
----
-
-# Modelo Relacional del Sistema
+# 📌 Esquema Relacional
 
 ```text
-ESTADO_USUARIO(
-    id_estado PK,
-    nombre
-)
-
-USUARIO(
+USUARIOS (
     id_usuario PK,
     nombre,
-    correo,
-    id_estado FK
+    apellido,
+    correo UNIQUE,
+    password,
+    rol,
+    estado,
+    fecha_registro
 )
 
-CLIENTE(
+CLIENTES (
     id_cliente PK,
-    nombre,
-    nit,
-    telefono
+    nombre_empresa,
+    nit UNIQUE,
+    direccion,
+    telefono,
+    correo,
+    estado
 )
 
-FACTURA(
+FACTURAS (
     id_factura PK,
-    numero_factura,
-    fecha,
+    numero_factura UNIQUE,
+    fecha_emision,
+    total,
     estado,
     id_cliente FK,
     id_usuario FK
 )
 
-DETALLE_FACTURA(
+DETALLE_FACTURA (
     id_detalle PK,
+    descripcion,
     cantidad,
     precio_unitario,
+    subtotal,
     id_factura FK
 )
 
-METODO_PAGO(
-    id_metodo PK,
-    nombre
-)
-
-PAGO(
+PAGOS (
     id_pago PK,
-    valor,
-    fecha,
-    id_metodo FK,
+    fecha_pago,
+    monto,
+    metodo_pago,
+    estado,
     id_factura FK
 )
 
-VERSION_MODELO(
-    id_modelo PK,
-    nombre,
-    version
-)
-
-ANALISIS_IA(
-    id_analisis PK,
-    precision_modelo,
-    id_modelo FK
-)
-
-TIPO_ALERTA(
-    id_tipo PK,
-    nombre
-)
-
-ESTADO_ALERTA(
-    id_estado PK,
-    nombre
-)
-
-ALERTA(
+ALERTAS (
     id_alerta PK,
+    tipo_alerta,
     descripcion,
-    id_tipo FK,
-    id_estado FK
+    nivel_riesgo,
+    fecha_generacion,
+    estado,
+    id_factura FK
 )
 
-TIPO_ACCION(
-    id_tipo_accion PK,
-    nombre
+IA_ANALISIS (
+    id_analisis PK,
+    tipo_analisis,
+    porcentaje_riesgo,
+    observaciones,
+    fecha_analisis,
+    id_factura FK
 )
 
-AUDITORIA(
+AUDITORIA (
     id_auditoria PK,
-    fecha,
-    id_tipo_accion FK,
+    accion,
+    descripcion,
+    fecha_evento,
     id_usuario FK
 )
+```
+
+---
+
+# 🔗 Relaciones del Modelo
+
+```mermaid
+flowchart LR
+
+CLIENTES -->|1:N| FACTURAS
+USUARIOS -->|1:N| FACTURAS
+FACTURAS -->|1:N| DETALLE_FACTURA
+FACTURAS -->|1:N| PAGOS
+FACTURAS -->|1:N| ALERTAS
+FACTURAS -->|1:N| IA_ANALISIS
+USUARIOS -->|1:N| AUDITORIA
+
+style CLIENTES fill:#C8E6C9,stroke:#2E7D32,color:#000000
+style USUARIOS fill:#BBDEFB,stroke:#1565C0,color:#000000
+style FACTURAS fill:#FFE082,stroke:#F9A825,color:#000000
+style DETALLE_FACTURA fill:#D1C4E9,stroke:#7B1FA2,color:#000000
+style PAGOS fill:#B2EBF2,stroke:#00838F,color:#000000
+style ALERTAS fill:#FFCDD2,stroke:#C62828,color:#000000
+style IA_ANALISIS fill:#E1BEE7,stroke:#8E24AA,color:#000000
+style AUDITORIA fill:#FFE0B2,stroke:#EF6C00,color:#000000
+```
+
+---
+
+# 📊 Cardinalidades
+
+| Tabla Principal | Relación | Tabla Relacionada |
+|---|---|---|
+| CLIENTES | 1:N | FACTURAS |
+| USUARIOS | 1:N | FACTURAS |
+| FACTURAS | 1:N | DETALLE_FACTURA |
+| FACTURAS | 1:N | PAGOS |
+| FACTURAS | 1:N | ALERTAS |
+| FACTURAS | 1:N | IA_ANALISIS |
+| USUARIOS | 1:N | AUDITORIA |
+
+---
+
+# 🎯 Objetivo del Modelo Relacional
+
+El modelo relacional permite estructurar la información del sistema de manera organizada y normalizada, garantizando:
+
+- Integridad referencial.
+- Seguridad de los datos.
+- Escalabilidad del sistema.
+- Control eficiente de facturación.
+- Monitoreo inteligente mediante IA.
+- Generación de reportes y auditorías.
+- Detección automática de anomalías.
