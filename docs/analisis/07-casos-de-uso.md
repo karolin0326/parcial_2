@@ -1,73 +1,145 @@
-# Diagrama de Casos de Uso  
+# 👥 Diagrama de Casos de Uso
+
 ## Sistema Inteligente de Monitoreo de Facturación con IA
 
-```plantuml
-@startuml
-left to right direction
-skinparam backgroundColor #F8F9FA
-skinparam actorStyle awesome
-skinparam packageStyle rectangle
-skinparam usecase {
-    BackgroundColor #E3F2FD
-    BorderColor #1565C0
-    ArrowColor #0D47A1
-    FontSize 14
-}
-skinparam actor {
-    BorderColor #1B5E20
-    BackgroundColor #C8E6C9
-    FontSize 14
-}
+### Vista General del Sistema
 
-actor "Usuario Contable" as UC
-actor "Administrador" as ADM
-actor "Auditor" as AUD
-actor "Motor IA" as IA
-actor "DIAN" as DIAN
+```mermaid
+graph TB
 
-rectangle "Sistema Inteligente de\nMonitoreo de Facturación" {
+%% =========================
+%% ACTORES
+%% =========================
 
-  usecase "Iniciar Sesión" as U1
-  usecase "Registrar Factura" as U2
-  usecase "Gestionar Clientes" as U3
-  usecase "Registrar Pago" as U4
-  usecase "Analizar Factura" as U5
-  usecase "Generar Alertas" as U6
-  usecase "Consultar Reportes" as U7
-  usecase "Gestionar Usuarios" as U8
-  usecase "Registrar Auditoría" as U9
-  usecase "Validar Factura\nElectrónica" as U10
-  usecase "Monitorear Facturación" as U11
-  usecase "Configurar IA" as U12
+UC[👨‍💼 Usuario Contable]
+ADM[🛠️ Administrador]
+AUD[📊 Auditor]
+IA[🤖 Motor IA]
+DIAN[🏛️ DIAN]
 
-}
+%% =========================
+%% SISTEMA
+%% =========================
 
-UC --> U1
-UC --> U2
-UC --> U3
-UC --> U4
-UC --> U7
-UC --> U11
+subgraph SISTEMA["💻 Sistema Inteligente de Monitoreo de Facturación"]
 
-ADM --> U8
-ADM --> U12
-ADM --> U9
-ADM --> U7
+LOGIN([🔐 Iniciar Sesión])
 
-AUD --> U6
-AUD --> U7
-AUD --> U9
+FACT([🧾 Registrar Factura])
+CLI([👥 Gestionar Clientes])
+PAGO([💳 Registrar Pago])
 
-IA --> U5
-IA --> U6
+MON([📡 Monitorear Facturación])
+ANALISIS([🤖 Analizar Facturas con IA])
+ALERTA([🚨 Generar Alertas])
 
-DIAN --> U10
+REP([📑 Consultar Reportes])
+AUDIT([📝 Registrar Auditoría])
 
-U2 --> U5 : <<include>>
-U5 --> U6 : <<extend>>
-U4 --> U11 : <<include>>
-U11 --> U7 : <<include>>
-U2 --> U10 : <<include>>
+USER([⚙️ Gestionar Usuarios])
+CONFIG([🧠 Configurar IA])
 
-@enduml
+VALIDAR([🏛️ Validar Factura Electrónica])
+
+end
+
+%% =========================
+%% RELACIONES ACTORES
+%% =========================
+
+UC --> LOGIN
+UC --> FACT
+UC --> CLI
+UC --> PAGO
+UC --> MON
+UC --> REP
+
+ADM --> USER
+ADM --> CONFIG
+ADM --> AUDIT
+ADM --> REP
+
+AUD --> REP
+AUD --> AUDIT
+AUD --> ALERTA
+
+IA --> ANALISIS
+IA --> ALERTA
+
+DIAN --> VALIDAR
+
+%% =========================
+%% FLUJO INTERNO
+%% =========================
+
+FACT --> ANALISIS
+ANALISIS --> ALERTA
+PAGO --> MON
+MON --> REP
+FACT --> VALIDAR
+
+%% =========================
+%% ESTILOS
+%% =========================
+
+style SISTEMA fill:#E3F2FD,stroke:#1565C0,stroke-width:3px
+style UC fill:#C8E6C9
+style ADM fill:#FFE082
+style AUD fill:#FFCCBC
+style IA fill:#D1C4E9
+style DIAN fill:#B3E5FC
+
+style FACT fill:#BBDEFB
+style CLI fill:#BBDEFB
+style PAGO fill:#BBDEFB
+style MON fill:#C8E6C9
+style ANALISIS fill:#D1C4E9
+style ALERTA fill:#FFCDD2
+style REP fill:#FFF9C4
+style AUDIT fill:#FFE0B2
+style USER fill:#CFD8DC
+style CONFIG fill:#CFD8DC
+style VALIDAR fill:#B3E5FC
+style LOGIN fill:#E1BEE7
 ```
+
+---
+
+# 📌 Descripción del Diagrama
+
+El siguiente diagrama representa gráficamente las interacciones entre los actores principales y las funcionalidades del **Sistema Inteligente de Monitoreo de Facturación con Inteligencia Artificial**.
+
+## 👨‍💼 Actores Principales
+
+| Actor | Descripción |
+|---|---|
+| Usuario Contable | Gestiona facturas, clientes y pagos |
+| Administrador | Configura y administra el sistema |
+| Auditor | Supervisa alertas, auditorías y reportes |
+| Motor IA | Analiza automáticamente las facturas |
+| DIAN | Valida las facturas electrónicas |
+
+---
+
+# ⚙️ Funcionalidades Principales
+
+- Registro y monitoreo de facturas.
+- Gestión de clientes y pagos.
+- Análisis automático mediante IA.
+- Detección de anomalías.
+- Generación de alertas automáticas.
+- Auditoría y reportes.
+- Gestión de usuarios.
+- Validación de facturación electrónica.
+
+---
+
+# 🎯 Objetivo del Diagrama
+
+Este diagrama permite visualizar:
+
+- La interacción entre usuarios y sistema.
+- Los procesos automatizados con IA.
+- El flujo principal de monitoreo contable.
+- La organización funcional del software.
+- Las responsabilidades de cada actor dentro del sistema.
