@@ -1,0 +1,3 @@
+# Objetivo General
+
+Desarrollar un sistema de monitoreo inteligente de facturación utilizando técnicas de Inteligencia Artificial y aprendizaje automático, capaz de detectar irregularidades, errores y anomalías en tiempo real dentro de los procesos contables y de facturación de pequeñas y medianas empresas, con el fin de optimizar el control financiero, reducir errores humanos y mejorar la eficiencia en la gestión administrativa y contable.
