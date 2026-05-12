@@ -56,4 +56,9 @@ El siguiente diccionario describe la estructura física de la base de datos `sis
 | | id_usuario | INT | | FK | NOT NULL, Referencia a USUARIO |
 | **TIPO_ACCION** | id_tipo_accion | INT | PK | | AUTO_INCREMENT |
 | | nombre | VARCHAR(100) | | | NOT NULL |
+| **TALLER** | id_taller | INT | PK | | AUTO_INCREMENT |
+| | nombre | VARCHAR(100) | | | NOT NULL |
+| | direccion | VARCHAR(150) | | | NULL |
 
+
+|
