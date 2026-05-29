@@ -1,19 +1,208 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #185FA5;
-  --primary-light: #E6F1FB;
-  --danger: #E24B4A;
-  --danger-light: #FCEBEB;
-  --success: #3B6D11;
-  --success-light: #EAF3DE;
-  --warning: #BA7517;
-  --warning-light: #FAEEDA;
-  --surface: #F8F9FA;
-  --card: #FFFFFF;
+  /* Fondo principal ultra oscuro */
+  --bg-main: #0A0F1A;
+  
+  /* Superficies y tarjetas (Glassmorphism) */
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+
+  /* Acentos vibrantes neon */
+  --cyan: #00E5FF;
+  --cyan-glow: rgba(0, 229, 255, 0.4);
+  --primary: #6366F1;
+  --primary-glow: rgba(99, 102, 241, 0.4);
+
+  /* Estados semánticos */
+  --danger: #FF3366;
+  --danger-bg: rgba(255, 51, 102, 0.1);
+  --danger-border: rgba(255, 51, 102, 0.2);
+
+  --success: #00E676;
+  --success-bg: rgba(0, 230, 118, 0.1);
+  --success-border: rgba(0, 230, 118, 0.2);
+
+  --warning: #FFAB00;
+  --warning-bg: rgba(255, 171, 0, 0.1);
+  --warning-border: rgba(255, 171, 0, 0.2);
+
+  --info: #29B6F6;
+  --info-bg: rgba(41, 182, 246, 0.1);
+
+  /* Texto */
+  --text-primary: #FFFFFF;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
 }
 
 body {
-  background-color: var(--surface);
-  color: #333;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ===== COMPONENTES PREMIUM ===== */
+
+/* Tarjetas con efecto Glassmorphism */
+.card-glass {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Inputs y Selects */
+.input-premium {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--surface-border);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.input-premium:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.input-premium::placeholder {
+  color: var(--text-muted);
+}
+
+/* Botones Base */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+/* Botón Primario con Glow Neon */
+.btn-primary-glow {
+  background: linear-gradient(135deg, var(--primary) 0%, #4F46E5 100%);
+  color: white;
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn-primary-glow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+  background: linear-gradient(135deg, #7174fa 0%, #5a52ff 100%);
+}
+
+.btn-primary-glow:active {
+  transform: translateY(1px);
+}
+
+.btn-primary-glow:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Botón Secundario Outline */
+.btn-secondary-outline {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--surface-border);
+}
+
+.btn-secondary-outline:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* Badges de Estados */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badge-success { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+.badge-danger { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
+.badge-warning { background: var(--warning-bg); color: var(--warning); border: 1px solid var(--warning-border); }
+
+/* Tablas Premium */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+td {
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
