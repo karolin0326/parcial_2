@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
+import app.db.base_all  # noqa: F401 — Registra TODOS los modelos antes de cualquier operación ORM
 from app.core.config import settings
 from app.api.v1.router import api_router
 from app.db.session import engine, SessionLocal

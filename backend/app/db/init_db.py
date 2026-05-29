@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+import app.db.base_all  # noqa: F401 — Registra todos los modelos antes de create_all
 from app.db.base import Base
 from app.db.session import engine
 from app.models.usuario import EstadoUsuario, Usuario
