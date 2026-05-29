@@ -16,10 +16,12 @@ const AlertasPage: React.FC = () => {
 
   const columns = [
     {
+      key: 'id',
       header: 'ID',
       render: (a: AlertaResponse) => <span style={{ fontFamily: 'monospace', color: 'var(--text-muted)' }}>#{a.id_alerta}</span>
     },
     {
+      key: 'descripcion',
       header: 'Descripción',
       render: (a: AlertaResponse) => (
         <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)', maxWidth: '340px', display: 'block' }}>
@@ -28,17 +30,20 @@ const AlertasPage: React.FC = () => {
       )
     },
     {
+      key: 'factura',
       header: 'Factura',
       render: (a: AlertaResponse) => a.id_factura
         ? <span style={{ fontFamily: 'monospace', color: 'var(--cyan)' }}>#{a.id_factura}</span>
         : <span style={{ color: 'var(--text-muted)' }}>—</span>
     },
-    { header: 'Fecha', render: (a: AlertaResponse) => formatDateTime(a.fecha_creacion) },
+    { key: 'fecha', header: 'Fecha', render: (a: AlertaResponse) => formatDateTime(a.fecha_creacion) },
     {
+      key: 'estado',
       header: 'Estado',
       render: (a: AlertaResponse) => <AlertBadge status={a.id_estado} />
     },
     {
+      key: 'accion',
       header: 'Acción',
       render: (a: AlertaResponse) => (
         a.id_estado !== 3 ? (

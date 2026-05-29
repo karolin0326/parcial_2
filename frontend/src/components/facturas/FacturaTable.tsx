@@ -16,6 +16,7 @@ export const FacturaTable: React.FC<FacturaTableProps> = ({ facturas, onAnular, 
 
   const columns = [
     {
+      key: 'numero',
       header: 'N° Factura',
       render: (f: FacturaResponse) => (
         <span style={{ fontWeight: 700, color: 'var(--cyan)', fontFamily: 'monospace' }}>
@@ -23,20 +24,23 @@ export const FacturaTable: React.FC<FacturaTableProps> = ({ facturas, onAnular, 
         </span>
       )
     },
-    { header: 'Fecha', render: (f: FacturaResponse) => formatDate(f.fecha) },
+    { key: 'fecha', header: 'Fecha', render: (f: FacturaResponse) => formatDate(f.fecha) },
     {
+      key: 'estado',
       header: 'Estado',
       render: (f: FacturaResponse) => (
         <span className={`badge ${getInvoiceStatusClass(f.estado)}`}>{f.estado}</span>
       )
     },
     {
+      key: 'items',
       header: 'Ítems',
       render: (f: FacturaResponse) => (
         <span style={{ color: 'var(--text-secondary)' }}>{f.detalles.length} línea(s)</span>
       )
     },
     {
+      key: 'total',
       header: 'Total',
       render: (f: FacturaResponse) => (
         <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
@@ -45,10 +49,11 @@ export const FacturaTable: React.FC<FacturaTableProps> = ({ facturas, onAnular, 
       )
     },
     {
+      key: 'acciones',
       header: 'Acciones',
       render: (f: FacturaResponse) => (
         <div style={{ display: 'flex', gap: '0.5rem' }}>
-          {f.estado !== 'Anulada' && (
+          {f.estado !== 'anulada' && (
             <button
               onClick={() => onAnular(f.id_factura)}
               title="Anular Factura"

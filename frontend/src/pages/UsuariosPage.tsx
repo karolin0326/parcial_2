@@ -46,10 +46,11 @@ const UsuariosPage: React.FC = () => {
   }
 
   const columns = [
-    { header: 'ID', render: (u: UsuarioResponse) => <span style={{ fontFamily: 'monospace', color: 'var(--text-muted)' }}>#{u.id_usuario}</span> },
-    { header: 'Nombre', render: (u: UsuarioResponse) => <span style={{ fontWeight: 600 }}>{u.nombre}</span> },
-    { header: 'Correo', render: (u: UsuarioResponse) => <span style={{ color: 'var(--text-secondary)' }}>{u.correo}</span> },
+    { key: 'id', header: 'ID', render: (u: UsuarioResponse) => <span style={{ fontFamily: 'monospace', color: 'var(--text-muted)' }}>#{u.id_usuario}</span> },
+    { key: 'nombre', header: 'Nombre', render: (u: UsuarioResponse) => <span style={{ fontWeight: 600 }}>{u.nombre}</span> },
+    { key: 'correo', header: 'Correo', render: (u: UsuarioResponse) => <span style={{ color: 'var(--text-secondary)' }}>{u.correo}</span> },
     {
+      key: 'rol',
       header: 'Rol',
       render: (u: UsuarioResponse) => (
         <span className="badge" style={{ background: `${rolColors[u.rol]}22`, border: `1px solid ${rolColors[u.rol]}55`, color: rolColors[u.rol] }}>
@@ -58,6 +59,7 @@ const UsuariosPage: React.FC = () => {
       )
     },
     {
+      key: 'estado',
       header: 'Estado',
       render: (u: UsuarioResponse) => u.id_estado === 1
         ? <span className="badge badge-success">Activo</span>

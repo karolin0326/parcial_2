@@ -27,9 +27,10 @@ const AuditoriaPage: React.FC = () => {
   useEffect(() => { load() }, [])
 
   const columns = [
-    { header: '#', render: (a: AuditoriaRow) => <span style={{ fontFamily: 'monospace', color: 'var(--text-muted)' }}>{a.id_auditoria}</span> },
-    { header: 'Fecha y Hora', render: (a: AuditoriaRow) => <span style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{formatDateTime(a.fecha)}</span> },
+    { key: 'id', header: '#', render: (a: AuditoriaRow) => <span style={{ fontFamily: 'monospace', color: 'var(--text-muted)' }}>{a.id_auditoria}</span> },
+    { key: 'fecha', header: 'Fecha y Hora', render: (a: AuditoriaRow) => <span style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>{formatDateTime(a.fecha)}</span> },
     {
+      key: 'accion',
       header: 'Acción',
       render: (a: AuditoriaRow) => (
         <span style={{
@@ -41,8 +42,9 @@ const AuditoriaPage: React.FC = () => {
         </span>
       )
     },
-    { header: 'Usuario', render: (a: AuditoriaRow) => <span style={{ fontWeight: 600, color: 'var(--cyan)' }}>{a.usuario}</span> },
+    { key: 'usuario', header: 'Usuario', render: (a: AuditoriaRow) => <span style={{ fontWeight: 600, color: 'var(--cyan)' }}>{a.usuario}</span> },
     {
+      key: 'detalles',
       header: 'Detalles',
       render: (a: AuditoriaRow) => (
         <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', maxWidth: '300px', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

@@ -31,7 +31,7 @@ export const ClienteForm: React.FC<ClienteFormProps> = ({ onSubmit, onClose, ini
     }
     setError(null)
     setIsSubmitting(true)
-    const ok = await onSubmit({ nombre, nit, telefono: telefono || undefined })
+    const ok = await onSubmit({ nombre, nit, telefono: telefono || '' })
     setIsSubmitting(false)
     if (ok) onClose()
     else setError('No se pudo guardar el cliente. El NIT puede estar duplicado.')

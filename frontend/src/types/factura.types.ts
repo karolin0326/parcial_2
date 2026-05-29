@@ -17,6 +17,15 @@ export interface Factura {
   detalles: DetalleFactura[];
 }
 
-export type FacturaCreateDTO = Omit<Factura, 'id_factura' | 'estado' | 'id_usuario' | 'detalles'> & {
-  detalles: Omit<DetalleFactura, 'id_detalle' | 'id_factura'>[];
+export type DetalleFacturaCreate = Omit<DetalleFactura, 'id_detalle' | 'id_factura'>;
+
+export type FacturaCreateDTO = Omit<Factura, 'id_factura' | 'detalles' | 'estado'> & {
+  estado?: string;
+  detalles: DetalleFacturaCreate[];
 };
+
+export type FacturaCreate = FacturaCreateDTO;
+export interface FacturaResponse extends Factura {
+  total?: number;
+}
+

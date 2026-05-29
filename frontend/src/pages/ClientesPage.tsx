@@ -9,13 +9,13 @@ import { useAuth } from '../hooks/useAuth'
 import { Plus, RefreshCw, Users, Pencil, Trash2 } from 'lucide-react'
 
 const ClientesPage: React.FC = () => {
-  const { user } = useAuth()
+  const { usuario } = useAuth()
   const [clientes, setClientes] = useState<ClienteResponse[]>([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [editTarget, setEditTarget] = useState<ClienteResponse | null>(null)
 
-  const canWrite = user?.rol === 'Administrador' || user?.rol === 'Contador'
+  const canWrite = usuario?.rol === 'administrador' || usuario?.rol === 'contador'
 
   const loadClientes = () => {
     setLoading(true)
@@ -48,11 +48,12 @@ const ClientesPage: React.FC = () => {
   const openEdit = (c: ClienteResponse) => { setEditTarget(c); setShowModal(true) }
 
   const columns = [
-    { header: 'ID', render: (c: ClienteResponse) => <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>#{c.id_cliente}</span> },
-    { header: 'Nombre / Razón Social', render: (c: ClienteResponse) => <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{c.nombre}</span> },
-    { header: 'NIT', render: (c: ClienteResponse) => <span style={{ fontFamily: 'monospace', color: 'var(--cyan)' }}>{c.nit}</span> },
-    { header: 'Teléfono', render: (c: ClienteResponse) => c.telefono || <span style={{ color: 'var(--text-muted)' }}>—</span> },
+    { key: 'id', header: 'ID', render: (c: ClienteResponse) => <span style={{ color: 'var(--text-muted)', fontFamily: 'monospace' }}>#{c.id_cliente}</span> },
+    { key: 'nombre', header: 'Nombre / Razón Social', render: (c: ClienteResponse) => <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{c.nombre}</span> },
+    { key: 'nit', header: 'NIT', render: (c: ClienteResponse) => <span style={{ fontFamily: 'monospace', color: 'var(--cyan)' }}>{c.nit}</span> },
+    { key: 'telefono', header: 'Teléfono', render: (c: ClienteResponse) => c.telefono || <span style={{ color: 'var(--text-muted)' }}>—</span> },
     {
+      key: 'acciones',
       header: 'Acciones',
       render: (c: ClienteResponse) => (
         <div style={{ display: 'flex', gap: '0.5rem' }}>
