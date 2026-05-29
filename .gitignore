@@ -1,5 +1,69 @@
-venv/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/
+python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv
+venv/
+ENV/
+env.bak
+venv.bak
+
+# Virtual environment in local workspace
+.venv/
+venv/
+env/
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Docker
+.docker/
+*.log
+
+# Node / React
+node_modules/
+/frontend/dist
+/frontend/build
+.eslintcache
+.npm
+package-lock.json
+
+# Local Environment Variables
 .env
-.pytest_cache/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/app/ia/models/*.pkl
+!backend/app/ia/models/.gitkeep
+
+# OS Files
+.DS_Store
+Thumbs.db
