@@ -8,239 +8,122 @@
 
 Este documento contiene las principales decisiones tomadas durante el análisis, diseño y desarrollo del proyecto **Sistema Inteligente de Monitoreo de Facturación con IA**.
 
-Las decisiones aquí documentadas permiten justificar tecnologías, arquitectura, modelos y estrategias implementadas en el sistema.
+---
+
+## Decisión #01
+¿Qué decidí?
+Usar aprendizaje automático para detección de anomalías en facturación en lugar de reglas predefinidas.
+
+¿Por qué?
+Los sistemas tradicionales basados en reglas no detectan patrones inusuales emergentes. La encuesta mostró que el 100% de los usuarios considera útil la detección automática y que el 80% de los errores se deben a mal ingreso de datos, lo cual es detectable con ML.
+
+¿Qué artefacto de diseño respalda esta decisión?
+Pregunta problematizadora, Tabla de alcance (entrada/proceso/salida) y Análisis de encuesta.
 
 ---
 
-# 🧠 DECISIÓN 01 — Uso de Arquitectura Modular
+## Decisión #02
+¿Qué decidí?
+No almacenar el campo `total` en FACTURA, ya que es un valor calculado.
 
-## 📌 Decisión
-Se decidió implementar una arquitectura modular separando el sistema en componentes independientes.
+¿Por qué?
+Almacenar un valor derivado viola la Tercera Forma Normal (3FN). Podría generar inconsistencias si los detalles cambian pero el total no se actualiza.
 
-## 🎯 Justificación
-La arquitectura modular permite:
-
-- Escalabilidad del sistema.
-- Fácil mantenimiento.
-- Separación de responsabilidades.
-- Integración sencilla con IA.
-- Reutilización de componentes.
-
-## ✅ Beneficios
-- Mejor organización del código.
-- Menor acoplamiento.
-- Facilidad para futuras mejoras.
-
-## ⚠️ Riesgos
-- Mayor complejidad inicial.
-- Necesidad de integración entre módulos.
+¿Qué artefacto de diseño respalda esta decisión?
+Normalización 3FN, Modelo Entidad Relación (MER) y Script DDL.
 
 ---
 
-# 🤖 DECISIÓN 02 — Implementación de Inteligencia Artificial
+## Decisión #03
+¿Qué decidí?
+Usar tablas de catálogo independientes para los estados y tipos (ESTADO_USUARIO, TIPO_ALERTA, ESTADO_ALERTA, METODO_PAGO, TIPO_ACCION).
 
-## 📌 Decisión
-Se decidió integrar un motor de IA para analizar facturación y detectar anomalías financieras.
+¿Por qué?
+Guardar estados como strings directamente en las tablas viola la integridad referencial y dificulta cambiar los valores. Con tablas de catálogo se garantiza consistencia y se facilita la administración desde la interfaz.
 
-## 🎯 Justificación
-El sistema busca automatizar el monitoreo inteligente de facturación mediante:
-
-- Detección de comportamientos sospechosos.
-- Identificación de inconsistencias.
-- Generación automática de alertas.
-
-## ✅ Beneficios
-- Reducción de errores manuales.
-- Monitoreo automático.
-- Optimización de auditorías.
-
-## ⚠️ Riesgos
-- Dependencia de modelos entrenados.
-- Posibles falsos positivos.
+¿Qué artefacto de diseño respalda esta decisión?
+MER versión final, Normalización 3FN y Matriz 9.7 (Tablas → MER → PK → FK → Forma Normal).
 
 ---
 
-# 🗄️ DECISIÓN 03 — Uso de MySQL/MariaDB
+## Decisión #04
+¿Qué decidí?
+Registrar la versión exacta del modelo de IA en cada análisis realizado por el sistema.
 
-## 📌 Decisión
-Se decidió utilizar MySQL/MariaDB como sistema gestor de base de datos.
+¿Por qué?
+Sin este registro no es posible auditar ni reproducir los resultados. Si el modelo cambia de versión y los resultados varían, no habría forma de saber qué versión tomó qué decisión.
 
-## 🎯 Justificación
-La elección se realizó debido a:
-
-- Compatibilidad con Spring Boot.
-- Soporte para relaciones complejas.
-- Integridad referencial.
-- Buen rendimiento transaccional.
-
-## ✅ Beneficios
-- Alta estabilidad.
-- Seguridad en almacenamiento.
-- Facilidad de administración.
-
-## ⚠️ Riesgos
-- Escalabilidad limitada frente a soluciones distribuidas.
+¿Qué artefacto de diseño respalda esta decisión?
+MER final (relación ANALISIS_IA —USA→ VERSION_MODELO), Matriz 9.6 y Matriz 9.9.
 
 ---
 
-# 🔐 DECISIÓN 04 — Seguridad mediante JWT
+## Decisión #05
+¿Qué decidí?
+Utilizar MySQL/MariaDB como sistema gestor de base de datos relacional.
 
-## 📌 Decisión
-Se implementó autenticación basada en JWT (JSON Web Token).
+¿Por qué?
+Garantiza alta estabilidad, soporte para relaciones complejas, integridad referencial y buen rendimiento transaccional para un sistema financiero.
 
-## 🎯 Justificación
-JWT permite:
-
-- Autenticación segura.
-- Manejo eficiente de sesiones.
-- Protección de endpoints.
-- Escalabilidad en APIs REST.
-
-## ✅ Beneficios
-- Seguridad en accesos.
-- Tokens ligeros.
-- Integración sencilla con frontend.
-
-## ⚠️ Riesgos
-- Riesgo si los tokens son expuestos.
+¿Qué artefacto de diseño respalda esta decisión?
+Diagrama de Despliegue UML y Modelo Relacional de Base de Datos.
 
 ---
 
-# 🏛️ DECISIÓN 05 — Integración con la DIAN
+## Decisión #06
+¿Qué decidí?
+Implementar seguridad mediante autenticación basada en JWT (JSON Web Token).
 
-## 📌 Decisión
-El sistema se integrará con la API de la DIAN para validación electrónica de facturas.
+¿Por qué?
+JWT permite autenticación segura, manejo eficiente de sesiones, protección de endpoints de la API y una integración muy sencilla con el frontend desarrollado en React.
 
-## 🎯 Justificación
-La validación electrónica es necesaria para:
-
-- Cumplimiento normativo.
-- Legalidad tributaria.
-- Verificación automática de facturas.
-
-## ✅ Beneficios
-- Automatización de validación.
-- Reducción de errores fiscales.
-- Cumplimiento legal.
-
-## ⚠️ Riesgos
-- Dependencia de disponibilidad externa.
+¿Qué artefacto de diseño respalda esta decisión?
+Diagrama de Componentes UML y Requisitos No Funcionales (RNF04 - Integridad de datos).
 
 ---
 
-# 📑 DECISIÓN 06 — Generación Automática de Reportes
+## Decisión #07
+¿Qué decidí?
+Generar alertas automáticas e inteligentes cuando se detecten anomalías.
 
-## 📌 Decisión
-Se decidió implementar generación automática de reportes PDF.
+¿Por qué?
+Las alertas en tiempo real son fundamentales para la respuesta temprana, la prevención de fraude y el monitoreo continuo sin necesidad de revisión manual constante.
 
-## 🎯 Justificación
-Los reportes permiten:
-
-- Auditoría financiera.
-- Monitoreo administrativo.
-- Evidencia documental.
-
-## ✅ Beneficios
-- Automatización documental.
-- Mayor control financiero.
-
-## ⚠️ Riesgos
-- Sobrecarga en generación masiva.
+¿Qué artefacto de diseño respalda esta decisión?
+Diagrama de Casos de Uso y Especificación de Requisitos Funcionales (RF05 - Generar alertas).
 
 ---
 
-# 🚨 DECISIÓN 07 — Sistema de Alertas Inteligentes
+## Decisión #08
+¿Qué decidí?
+Desarrollar la plataforma como una aplicación web responsive.
 
-## 📌 Decisión
-El sistema generará alertas automáticas cuando se detecten anomalías.
+¿Por qué?
+Esto permite acceso multiplataforma, compatibilidad con cualquier navegador y facilita que los administradores revisen las facturas desde cualquier dispositivo sin instalar software adicional.
 
-## 🎯 Justificación
-Las alertas permiten:
-
-- Respuesta temprana.
-- Prevención de fraude.
-- Monitoreo continuo.
-
-## ✅ Beneficios
-- Mayor seguridad financiera.
-- Automatización de supervisión.
-
-## ⚠️ Riesgos
-- Exceso de alertas si no se ajustan correctamente las reglas.
+¿Qué artefacto de diseño respalda esta decisión?
+Wireframes, Mapa de Navegación y Diagrama de Despliegue UML.
 
 ---
 
-# 🌐 DECISIÓN 08 — Desarrollo Web Responsive
+## Decisión #09
+¿Qué decidí?
+Utilizar FastAPI (Python) como framework backend.
 
-## 📌 Decisión
-La plataforma será desarrollada como aplicación web responsive.
+¿Por qué?
+FastAPI genera documentación automática nativa (Swagger), tiene validación de datos integrada con Pydantic, y al ser Python, facilita enormemente la integración con la librería de Inteligencia Artificial para el motor de anomalías.
 
-## 🎯 Justificación
-Esto permite:
-
-- Acceso multiplataforma.
-- Compatibilidad con navegadores.
-- Facilidad de despliegue.
-
-## ✅ Beneficios
-- Acceso desde cualquier dispositivo.
-- Mayor disponibilidad.
-
-## ⚠️ Riesgos
-- Dependencia de conexión a internet.
+¿Qué artefacto de diseño respalda esta decisión?
+Diagrama de Despliegue UML (Servidor Aplicación con protocolo REST) y Diagrama de Componentes UML.
 
 ---
 
-# ⚙️ DECISIÓN 09 — Uso de Spring Boot
+## Decisión #10
+¿Qué decidí?
+Implementar un módulo transversal de auditoría que registre todas las acciones críticas.
 
-## 📌 Decisión
-Se decidió utilizar Spring Boot como framework backend.
+¿Por qué?
+La auditoría es un requerimiento vital en aplicaciones contables para asegurar la trazabilidad, seguridad y seguimiento detallado de todas las operaciones de los usuarios en el sistema.
 
-## 🎯 Justificación
-Spring Boot proporciona:
-
-- Desarrollo rápido.
-- Integración sencilla.
-- Seguridad integrada.
-- Arquitectura escalable.
-
-## ✅ Beneficios
-- Productividad.
-- Modularidad.
-- Integración REST API.
-
-## ⚠️ Riesgos
-- Consumo mayor de recursos en proyectos grandes.
-
----
-
-# 📊 DECISIÓN 10 — Implementación de Auditoría
-
-## 📌 Decisión
-El sistema registrará auditorías de todas las acciones críticas.
-
-## 🎯 Justificación
-La auditoría es necesaria para:
-
-- Trazabilidad.
-- Seguridad.
-- Seguimiento de operaciones.
-
-## ✅ Beneficios
-- Control administrativo.
-- Evidencia de acciones.
-
-## ⚠️ Riesgos
-- Crecimiento de almacenamiento histórico.
-
----
-
-# 🎯 Objetivo del Documento
-
-El documento de decisiones permite:
-
-- Justificar elecciones técnicas.
-- Mantener trazabilidad arquitectónica.
-- Facilitar mantenimiento futuro.
-- Documentar riesgos y beneficios.
-- Apoyar la evolución del sistema.
+¿Qué artefacto de diseño respalda esta decisión?
+Modelo Entidad Relación (Tabla Auditoria) y Requisitos Funcionales (RF11 - Registrar auditoría).
