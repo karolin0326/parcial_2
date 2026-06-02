@@ -17,108 +17,137 @@
 
 ---
 
-## ENTRADA 01
-**Fecha:** Febrero 2025 — Ingeniería de Software 1
+## Entrada #01 — Febrero 2025 (Ingeniería de Software 1)
 **Estado:** ✅ COMPLETADA
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | Inicio del proyecto en Ingeniería de Software 1 con la docente Piedad. Se realizó toda la fase de documentación: definición del problema, pregunta problematizadora, alcance del sistema (entradas, procesos, salidas), objetivos generales y específicos, y extracción de requisitos mediante encuesta. |
-| **Problema encontrado** | En esta etapa no hubo problemas de implementación técnica ya que el trabajo era exclusivamente documental. La dificultad fue delimitar bien el alcance para una empresa pequeña sin que fuera demasiado ambicioso. |
-| **¿Cómo lo resolví?** | Se acotó el alcance al monitoreo de facturación con detección de anomalías. Se realizó encuesta a usuarios reales del área contable para sustentar los requisitos con evidencia. |
-| **¿Usé IA?** | No se utilizó IA en esta sesión. |
-| **Ajuste del resultado** | La documentación quedó aprobada por la docente Piedad y sirvió como base para continuar el proyecto en Ingeniería de Software 2. |
-| **Artefactos / archivos** | Documento de requisitos · Encuesta Microsoft Forms · Tabla de alcance (entrada/proceso/salida) |
+**¿Qué hice?**
+Inicio del proyecto en Ingeniería de Software 1 con la docente Piedad. Se realizó toda la fase de documentación: definición del problema, pregunta problematizadora, alcance del sistema (entradas, procesos, salidas), objetivos generales y específicos, y extracción de requisitos mediante encuesta.
+
+**¿Qué problema encontré?**
+En esta etapa no hubo problemas de implementación técnica ya que el trabajo era exclusivamente documental. La dificultad fue delimitar bien el alcance para una empresa pequeña sin que fuera demasiado ambicioso.
+
+**¿Cómo lo resolví?**
+Se acotó el alcance al monitoreo de facturación con detección de anomalías. Se realizó encuesta a usuarios reales del área contable para sustentar los requisitos con evidencia.
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+No. No se utilizó IA en esta sesión. La documentación quedó aprobada por la docente Piedad y sirvió como base para continuar el proyecto en Ingeniería de Software 2.
+
+**Artefactos / archivos:** Documento de requisitos · Encuesta Microsoft Forms · Tabla de alcance (entrada/proceso/salida)
 
 ---
 
-## ENTRADA 02
-**Fecha:** 27 de Marzo 2026 — Primera entrega Ing. Software 2
+## Entrada #02 — 27 de Marzo 2026 (Primera entrega Ing. Software 2)
 **Estado:** ✅ COMPLETADA
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | Primera entrega formal en Ingeniería de Software 2 con la docente Gloria Amparo Lora. Se entregaron: diagrama de casos de uso, tabla de contexto, tabla de interacciones, diagrama de contexto arquitectónico (DCA), diagrama de arquetipos, diagrama de componentes UML, diagrama de despliegue UML, diccionario de datos, MER conceptual, modelo relacional y normalización 3FN. |
-| **Problema encontrado** | El MER tenía errores estructurales: la tabla FACTURA incluía un campo `total` calculado que no debería almacenarse; faltaban tablas de catálogo (TIPO_ALERTA, ESTADO_ALERTA, METODO_PAGO, TIPO_ACCION, VERSION_MODELO, ESTADO_USUARIO); las cardinalidades de algunas relaciones estaban incorrectas. |
-| **¿Cómo lo resolví?** | Se entregó el documento con lo que se tenía. La docente revisó y envió correcciones detalladas indicando exactamente qué tablas faltaban y qué campos debían eliminarse o separarse. |
-| **¿Usé IA?** | Sí. Se utilizó IA para generar borradores del diagrama de casos de uso y la descripción del DCA. El resultado se revisó y ajustó manualmente para que coincidiera con el contexto real del proyecto. |
-| **Ajuste del resultado** | Se aceptaron todas las correcciones de la docente. Se identificó que el MER necesitaba una reestructuración completa antes de pasar a implementación. |
-| **Artefactos / archivos** | `Parcial_1_Ing_Software_2.docx` · Diagrama CU · MER versión 1 (con errores) |
+**¿Qué hice?**
+Primera entrega formal en Ingeniería de Software 2 con la docente Gloria Amparo Lora. Se entregaron: diagrama de casos de uso, tabla de contexto, tabla de interacciones, diagrama de contexto arquitectónico (DCA), diagrama de arquetipos, diagrama de componentes UML, diagrama de despliegue UML, diccionario de datos, MER conceptual, modelo relacional y normalización 3FN.
+
+**¿Qué problema encontré?**
+El MER tenía errores estructurales: la tabla FACTURA incluía un campo `total` calculado que no debería almacenarse; faltaban tablas de catálogo (TIPO_ALERTA, ESTADO_ALERTA, METODO_PAGO, TIPO_ACCION, VERSION_MODELO, ESTADO_USUARIO); las cardinalidades de algunas relaciones estaban incorrectas.
+
+**¿Cómo lo resolví?**
+Se entregó el documento con lo que se tenía. La docente revisó y envió correcciones detalladas indicando exactamente qué tablas faltaban y qué campos debían eliminarse o separarse.
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+Sí. Se utilizó IA para generar borradores del diagrama de casos de uso y la descripción del DCA. El resultado se revisó y ajustó manualmente para que coincidiera con el contexto real del proyecto. Se aceptaron todas las correcciones de la docente. Se identificó que el MER necesitaba una reestructuración completa antes de pasar a implementación.
+
+**Artefactos / archivos:** `Parcial_1_Ing_Software_2.docx` · Diagrama CU · MER versión 1 (con errores)
 
 ---
 
-## ENTRADA 03
-**Fecha:** Inicio de Abril 2026 — Correcciones del MER (Iteración 1)
+## Entrada #03 — Inicio de Abril 2026 (Correcciones del MER, Iteración 1)
 **Estado:** ✅ COMPLETADA
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | Recepción de correcciones por parte de la docente. Primera iteración de corrección del MER: se eliminó el campo `total` de FACTURA (se estableció que el total se calcula como `SUM(cantidad × precio_unitario)` desde DETALLE_FACTURA), se ajustaron relaciones entre USUARIO y FACTURA. |
-| **Problema encontrado** | Al corregir el MER por primera vez aún faltaban las tablas de catálogo. La relación entre ALERTA y FACTURA no estaba bien definida. El MER fue rechazado nuevamente. |
-| **¿Cómo lo resolví?** | Se revisó la corrección con más detalle y se identificaron las tablas de catálogo faltantes: TIPO_ALERTA, ESTADO_ALERTA, ESTADO_USUARIO. |
-| **¿Usé IA?** | No se utilizó IA en esta sesión. |
-| **Ajuste del resultado** | Se preparó una segunda versión del MER incorporando las tablas de catálogo identificadas. Pendiente de revisión. |
-| **Artefactos / archivos** | MER versión 2 · Notas de correcciones docente |
+**¿Qué hice?**
+Recepción de correcciones por parte de la docente. Primera iteración de corrección del MER: se eliminó el campo `total` de FACTURA (se estableció que el total se calcula como `SUM(cantidad × precio_unitario)` desde DETALLE_FACTURA), se ajustaron relaciones entre USUARIO y FACTURA.
+
+**¿Qué problema encontré?**
+Al corregir el MER por primera vez aún faltaban las tablas de catálogo. La relación entre ALERTA y FACTURA no estaba bien definida. El MER fue rechazado nuevamente.
+
+**¿Cómo lo resolví?**
+Se revisó la corrección con más detalle y se identificaron las tablas de catálogo faltantes: TIPO_ALERTA, ESTADO_ALERTA, ESTADO_USUARIO.
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+No. No se utilizó IA en esta sesión. Se preparó una segunda versión del MER incorporando las tablas de catálogo identificadas. Pendiente de revisión.
+
+**Artefactos / archivos:** MER versión 2 · Notas de correcciones docente
 
 ---
 
-## ENTRADA 04
-**Fecha:** Abril 2026 — Correcciones del MER (Iteración 2)
+## Entrada #04 — Abril 2026 (Correcciones del MER, Iteración 2)
 **Estado:** ✅ COMPLETADA
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | Segunda iteración de corrección del MER. Se agregaron: TIPO_ALERTA, ESTADO_ALERTA, ESTADO_USUARIO. Se revisaron todas las cardinalidades. El MER fue enviado nuevamente a la docente. |
-| **Problema encontrado** | La tabla ANALISIS_IA no tenía referencia a qué versión del modelo de IA ejecutó el análisis. Faltaba la tabla VERSION_MODELO. Además, AUDITORIA y TIPO_ACCION no estaban en el modelo. |
-| **¿Cómo lo resolví?** | Se identificó que el sistema necesita rastrear qué versión del modelo de IA generó cada análisis para efectos de trazabilidad. Se agregaron VERSION_MODELO, AUDITORIA y TIPO_ACCION. |
-| **¿Usé IA?** | Sí. Se consultó IA para validar si la estructura de ANALISIS_IA con referencia a VERSION_MODELO era coherente con buenas prácticas de sistemas de ML en producción. La IA confirmó el enfoque y sugirió incluir el campo `precision` en ANALISIS_IA. |
-| **Ajuste del resultado** | Se incluyó el campo `precision DECIMAL(5,2)` en ANALISIS_IA para registrar la métrica de confianza del modelo en cada análisis. |
-| **Artefactos / archivos** | MER versión 3 · VERSION_MODELO agregada · AUDITORIA y TIPO_ACCION agregadas |
+**¿Qué hice?**
+Segunda iteración de corrección del MER. Se agregaron: TIPO_ALERTA, ESTADO_ALERTA, ESTADO_USUARIO. Se revisaron todas las cardinalidades. El MER fue enviado nuevamente a la docente.
+
+**¿Qué problema encontré?**
+La tabla ANALISIS_IA no tenía referencia a qué versión del modelo de IA ejecutó el análisis. Faltaba la tabla VERSION_MODELO. Además, AUDITORIA y TIPO_ACCION no estaban en el modelo.
+
+**¿Cómo lo resolví?**
+Se identificó que el sistema necesita rastrear qué versión del modelo de IA generó cada análisis para efectos de trazabilidad. Se agregaron VERSION_MODELO, AUDITORIA y TIPO_ACCION.
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+Sí. Se consultó IA para validar si la estructura de ANALISIS_IA con referencia a VERSION_MODELO era coherente con buenas prácticas de sistemas de ML en producción. La IA confirmó el enfoque y sugirió incluir el campo `precision` en ANALISIS_IA. Se incluyó el campo `precision DECIMAL(5,2)` en ANALISIS_IA para registrar la métrica de confianza del modelo en cada análisis.
+
+**Artefactos / archivos:** MER versión 3 · VERSION_MODELO agregada · AUDITORIA y TIPO_ACCION agregadas
 
 ---
 
-## ENTRADA 05
-**Fecha:** 12 de Abril 2026 — MER final aprobado (Iteración 3)
+## Entrada #05 — 12 de Abril 2026 (MER final aprobado, Iteración 3)
 **Estado:** ✅ COMPLETADA
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | Tercera y última corrección del MER, completada en la primera semana después de Semana Santa. Se entregó el MER con las 14 tablas completas y todas las relaciones correctas. La docente aprobó el modelo. |
-| **Problema encontrado** | Las matrices de trazabilidad del documento original solo referenciaban 5 tablas cuando el MER final tenía 14. Las FK en las matrices estaban incompletas. Faltaban RF para Pagos (RF06), Clientes (RF10) y Auditoría (RF11). |
-| **¿Cómo lo resolví?** | Se corrigieron las 14 matrices de trazabilidad para incluir todas las tablas del MER final, con sus FK correctas extraídas del DDL y los RF faltantes. |
-| **¿Usé IA?** | Sí. Se utilizó IA para revisar el documento y detectar inconsistencias entre el MER, el DDL y las matrices. La IA generó las matrices corregidas en formato `.docx`. |
-| **Ajuste del resultado** | Se validó cada corrección contra el MER y el script DDL. Se añadió nota explicativa en el documento indicando qué cambió respecto a la versión anterior. |
-| **Artefactos / archivos** | `MER_corregido_final.png` · `Matrices_Trazabilidad_Corregidas.docx` · Script DDL completo |
+**¿Qué hice?**
+Tercera y última corrección del MER, completada en la primera semana después de Semana Santa. Se entregó el MER con las 14 tablas completas y todas las relaciones correctas. La docente aprobó el modelo.
+
+**¿Qué problema encontré?**
+Las matrices de trazabilidad del documento original solo referenciaban 5 tablas cuando el MER final tenía 14. Las FK en las matrices estaban incompletas. Faltaban RF para Pagos (RF06), Clientes (RF10) y Auditoría (RF11).
+
+**¿Cómo lo resolví?**
+Se corrigieron las 14 matrices de trazabilidad para incluir todas las tablas del MER final, con sus FK correctas extraídas del DDL y los RF faltantes.
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+Sí. Se utilizó IA para revisar el documento y detectar inconsistencias entre el MER, el DDL y las matrices. La IA generó las matrices corregidas en formato `.docx`. Se validó cada corrección contra el MER y el script DDL. Se añadió nota explicativa en el documento indicando qué cambió respecto a la versión anterior.
+
+**Artefactos / archivos:** `MER_corregido_final.png` · `Matrices_Trazabilidad_Corregidas.docx` · Script DDL completo
 
 ---
 
-## ENTRADA 06
-**Fecha:** Mayo 2026 — Inicio de implementación (FastAPI)
+## Entrada #06 — Mayo 2026 (Inicio de implementación FastAPI)
 **Estado:** 🔄 EN PROGRESO
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | Con el MER aprobado se inició la fase de implementación. Se configuró el entorno de desarrollo: Python, FastAPI, SQLAlchemy, MySQL, Pydantic v2. Se creó la estructura base del proyecto con carpetas: `routers/`, `models.py`, `schemas.py`, `database.py`, `main.py`. |
-| **Problema encontrado** | Al instalar dependencias surgió conflicto de versiones entre Pydantic v1 y v2 — SQLAlchemy usaba validadores con la sintaxis antigua (`class Config`). También se tuvo que configurar la cadena de conexión MySQL correctamente con `pymysql`. |
-| **¿Cómo lo resolví?** | Se actualizó a Pydantic v2 usando `model_config = ConfigDict(...)` en lugar de `class Config`. Se instaló `pymysql` como driver y se verificó la conexión con un endpoint de prueba `GET /`. |
-| **¿Usé IA?** | Sí. Se consultó IA para resolver el error de migración Pydantic v1 → v2 y para generar el código base del proyecto (`database.py`, `models.py` con las primeras tablas, endpoint del dashboard con métricas). |
-| **Ajuste del resultado** | Se ajustaron los modelos SQLAlchemy para que los `relationships` estuvieran correctamente configurados con `back_populates`. Se validó que el endpoint `/dashboard` retornara las 4 métricas esperadas. |
-| **Artefactos / archivos** | `main.py` · `database.py` · `models.py` · `routers/dashboard.py` · `requirements.txt` |
+**¿Qué hice?**
+Con el MER aprobado se inició la fase de implementación. Se configuró el entorno de desarrollo: Python, FastAPI, SQLAlchemy, MySQL, Pydantic v2. Se creó la estructura base del proyecto con carpetas: `routers/`, `models.py`, `schemas.py`, `database.py`, `main.py`.
+
+**¿Qué problema encontré?**
+Al instalar dependencias surgió conflicto de versiones entre Pydantic v1 y v2 — SQLAlchemy usaba validadores con la sintaxis antigua (`class Config`). También se tuvo que configurar la cadena de conexión MySQL correctamente con `pymysql`.
+
+**¿Cómo lo resolví?**
+Se actualizó a Pydantic v2 usando `model_config = ConfigDict(...)` en lugar de `class Config`. Se instaló `pymysql` como driver y se verificó la conexión con un endpoint de prueba `GET /`.
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+Sí. Se consultó IA para resolver el error de migración Pydantic v1 → v2 y para generar el código base del proyecto (`database.py`, `models.py` con las primeras tablas, endpoint del dashboard con métricas). Se ajustaron los modelos SQLAlchemy para que los `relationships` estuvieran correctamente configurados con `back_populates`. Se validó que el endpoint `/dashboard` retornara las 4 métricas esperadas.
+
+**Artefactos / archivos:** `main.py` · `database.py` · `models.py` · `routers/dashboard.py` · `requirements.txt`
 
 ---
 
-## ENTRADA 07 *(por completar)*
-**Fecha:** ___________________
+## Entrada #07 *(por completar)*
 **Estado:** ⬜ PENDIENTE
 
-| Campo | Detalle |
-|---|---|
-| **¿Qué hice?** | |
-| **Problema encontrado** | |
-| **¿Cómo lo resolví?** | |
-| **¿Usé IA?** | |
-| **Ajuste del resultado** | |
-| **Artefactos / archivos** | |
+**¿Qué hice?**
+*(Por documentar)*
+
+**¿Qué problema encontré?**
+*(Por documentar)*
+
+**¿Cómo lo resolví?**
+*(Por documentar)*
+
+**¿Usé IA? Sí/No — ¿Qué ajusté del resultado?**
+*(Por documentar)*
+
+**Artefactos / archivos:** 
+*(Por documentar)*
 
 ---
 

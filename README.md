@@ -1,5 +1,24 @@
 # Sistema de Monitoreo Inteligente de Facturación con IA
 
+## Cuestionario de Implementación
+
+**¿Qué módulo implementas?**  
+Implemento el **Backend API REST** y el panel interactivo del Sistema de Monitoreo Inteligente de Facturación, integrando la gestión de facturas, clientes, pagos y el motor de Inteligencia Artificial para la detección de anomalías.
+
+**¿Qué tablas cubre tu módulo?**  
+El módulo abarca las tablas principales de la base de datos: `Usuario`, `Cliente`, `Factura`, `DetalleFactura`, `Pago`, `MetodoPago`, `AnalisisIA`, `VersionModelo`, `Alerta` y `Auditoria`.
+
+**¿Qué framework elegiste y por qué?**  
+Se eligió **FastAPI** (Python). La elección se debe a que es un framework moderno, rápido y excelente para construir APIs REST. Además, Python es el estándar para proyectos de Inteligencia Artificial y Machine Learning, lo que facilita la integración del motor de detección de anomalías. También genera documentación automática (Swagger) que mejora la experiencia de desarrollo y prueba.
+
+**¿Cómo ejecutar el proyecto?**  
+1. Tener instalado **Python** y **XAMPP** (con el servicio MySQL activo).
+2. Crear la base de datos `sistema_facturacion` en MySQL.
+3. Ejecutar el script `run.bat` que configura el entorno virtual, instala las dependencias y levanta el servidor.
+*(Puedes encontrar los detalles completos en la sección "¿Cómo correr este proyecto?" al final de este documento).*
+
+---
+
 ## Descripción del Proyecto
 
 El Sistema de Monitoreo Inteligente de Facturación con Inteligencia Artificial es una solución de software desarrollada para supervisar, analizar y detectar anomalías dentro de los procesos de facturación de pequeñas empresas.
