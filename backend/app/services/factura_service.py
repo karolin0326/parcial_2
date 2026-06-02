@@ -11,16 +11,19 @@ from app.services.auditoria_service import AuditoriaService
 
 class FacturaService:
     
+    # CU-03 | RF-01 | E12 - get_facturas()
     @staticmethod
     def get_facturas(db: Session, skip: int = 0, limit: int = 100):
         """Obtiene la lista de todas las facturas."""
         return db.query(Factura).offset(skip).limit(limit).all()
 
+    # CU-03 | RF-01 | E12 - get_factura()
     @staticmethod
     def get_factura(db: Session, factura_id: int):
         """Busca una factura específica por su ID."""
         return db.query(Factura).filter(Factura.id_factura == factura_id).first()
 
+    # CU-03 | RF-01 | E12 - create_factura()
     @staticmethod
     def create_factura(db: Session, factura_in: FacturaCreate, id_usuario_audit: int) -> Factura:
         """
@@ -115,6 +118,7 @@ class FacturaService:
 
         return db_factura
 
+    # CU-03 | RF-01 | E12 - anular_factura()
     @staticmethod
     def anular_factura(db: Session, factura_id: int, id_usuario_audit: int) -> Factura:
         """Anula una factura del sistema."""
@@ -139,6 +143,7 @@ class FacturaService:
         
         return db_factura
 
+    # CU-03 | RF-01 | E12 - delete_factura()
     @staticmethod
     def delete_factura(db: Session, factura_id: int, id_usuario_audit: int) -> Factura:
         """Elimina una factura y sus detalles."""

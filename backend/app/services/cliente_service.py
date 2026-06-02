@@ -7,14 +7,17 @@ from app.services.auditoria_service import AuditoriaService
 
 class ClienteService:
     
+    # CU-02 | RF-10 | E12 - get_clientes()
     @staticmethod
     def get_clientes(db: Session, skip: int = 0, limit: int = 100):
         return db.query(Cliente).offset(skip).limit(limit).all()
 
+    # CU-02 | RF-10 | E12 - get_cliente()
     @staticmethod
     def get_cliente(db: Session, cliente_id: int):
         return db.query(Cliente).filter(Cliente.id_cliente == cliente_id).first()
 
+    # CU-02 | RF-10 | E12 - create_cliente()
     @staticmethod
     def create_cliente(db: Session, cliente_in: ClienteCreate, id_usuario_audit: int) -> Cliente:
         # Validar NIT único
@@ -40,6 +43,7 @@ class ClienteService:
         
         return db_cliente
 
+    # CU-02 | RF-10 | E12 - update_cliente()
     @staticmethod
     def update_cliente(db: Session, cliente_id: int, cliente_in: ClienteUpdate, id_usuario_audit: int) -> Cliente:
         db_cliente = db.query(Cliente).filter(Cliente.id_cliente == cliente_id).first()
@@ -65,6 +69,7 @@ class ClienteService:
         
         return db_cliente
 
+    # CU-02 | RF-10 | E12 - delete_cliente()
     @staticmethod
     def delete_cliente(db: Session, cliente_id: int, id_usuario_audit: int) -> Cliente:
         db_cliente = db.query(Cliente).filter(Cliente.id_cliente == cliente_id).first()

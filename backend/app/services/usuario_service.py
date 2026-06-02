@@ -9,14 +9,17 @@ from app.services.auditoria_service import AuditoriaService
 
 class UsuarioService:
     
+    # CU-01 | RF-02 | E12 - get_usuarios()
     @staticmethod
     def get_usuarios(db: Session, skip: int = 0, limit: int = 100):
         return db.query(Usuario).offset(skip).limit(limit).all()
 
+    # CU-01 | RF-02 | E12 - get_usuario()
     @staticmethod
     def get_usuario(db: Session, usuario_id: int):
         return db.query(Usuario).filter(Usuario.id_usuario == usuario_id).first()
 
+    # CU-01 | RF-02 | E12 - authenticate_user()
     @staticmethod
     def authenticate_user(db: Session, correo: str, contrasenia: str) -> Optional[Usuario]:
         """
@@ -32,6 +35,7 @@ class UsuarioService:
             
         return usuario
 
+    # CU-01 | RF-02 | E12 - create_usuario()
     @staticmethod
     def create_usuario(db: Session, usuario_in: UsuarioCreate, id_usuario_audit: Optional[int] = None) -> Usuario:
         """Crea un usuario nuevo con contraseña encriptada por hash."""
@@ -67,6 +71,7 @@ class UsuarioService:
             
         return db_usuario
 
+    # CU-01 | RF-02 | E12 - update_usuario()
     @staticmethod
     def update_usuario(db: Session, usuario_id: int, usuario_in: UsuarioUpdate, id_usuario_audit: int) -> Usuario:
         """Modifica un usuario del sistema (solo permitido a Administradores)."""
@@ -97,6 +102,7 @@ class UsuarioService:
         
         return db_usuario
 
+    # CU-01 | RF-02 | E12 - delete_usuario()
     @staticmethod
     def delete_usuario(db: Session, usuario_id: int, id_usuario_audit: int) -> Usuario:
         db_usuario = db.query(Usuario).filter(Usuario.id_usuario == usuario_id).first()

@@ -9,6 +9,7 @@ from app.services.auditoria_service import AuditoriaService
 
 class ReporteService:
     
+    # CU-05 | RF-04 | E12 - generar_reporte_diario()
     @staticmethod
     def generar_reporte_diario(db: Session, dia: date, id_usuario_audit: int) -> Dict[str, Any]:
         """

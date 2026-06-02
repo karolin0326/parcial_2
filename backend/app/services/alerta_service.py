@@ -8,16 +8,19 @@ from app.services.auditoria_service import AuditoriaService
 
 class AlertaService:
     
+    # CU-04 | RF-05 | E12 - get_alertas()
     @staticmethod
     def get_alertas(db: Session, skip: int = 0, limit: int = 100):
         """Obtiene la lista de todas las alertas del sistema."""
         return db.query(Alerta).order_by(Alerta.fecha_creacion.desc()).offset(skip).limit(limit).all()
 
+    # CU-04 | RF-05 | E12 - get_alerta()
     @staticmethod
     def get_alerta(db: Session, alerta_id: int):
         """Busca una alerta específica por su ID."""
         return db.query(Alerta).filter(Alerta.id_alerta == alerta_id).first()
 
+    # CU-04 | RF-05 | E12 - generar_alerta_ia()
     @staticmethod
     def generar_alerta_ia(db: Session, factura_id: int, numero_factura: str, score: float) -> Alerta:
         """
@@ -37,6 +40,7 @@ class AlertaService:
         
         return db_alerta
 
+    # CU-04 | RF-05 | E12 - actualizar_estado_alerta()
     @staticmethod
     def actualizar_estado_alerta(db: Session, alerta_id: int, alerta_in: AlertaUpdate, id_usuario_audit: int) -> Alerta:
         """Permite a un Auditor o Administrador resolver/cambiar el estado de una alerta."""

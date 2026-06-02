@@ -6,6 +6,7 @@ from app.models.usuario import Usuario
 
 class AuditoriaService:
     
+    # CU-06 | RF-11 | E12 - get_auditorias()
     @staticmethod
     def get_auditorias(db: Session, skip: int = 0, limit: int = 100):
         """Consulta el log completo de auditorías, resolviendo nombres de usuario y acciones."""
@@ -34,6 +35,7 @@ class AuditoriaService:
             } for r in results
         ]
 
+    # CU-06 | RF-11 | E12 - registrar_accion()
     @staticmethod
     def registrar_accion(db: Session, id_usuario: int, tipo_accion_nombre: str, detalles: str = None) -> Auditoria:
         """
