@@ -1,4 +1,4 @@
-export type FacturaEstado = 'pendiente' | 'validada' | 'anomalia' | 'anulada';
+export type FacturaEstado = 'Emitida' | 'Pagada' | 'Anulada' | 'pendiente' | 'validada' | 'anomalia' | 'anulada';
 
 export interface DetalleFactura {
   id_detalle: number;

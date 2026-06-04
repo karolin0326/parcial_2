@@ -61,10 +61,10 @@ const ClientesPage: React.FC = () => {
         <div style={{ display: 'flex', gap: '0.5rem' }}>
           {canWrite && (
             <>
-              <button onClick={() => openEdit(c)} style={{ background: 'var(--info-bg)', border: 'none', color: 'var(--info)', padding: '0.35rem 0.65rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem', fontWeight: 600 }}>
+              <button onClick={() => openEdit(c)} className="btn-premium btn-secondary-outline" style={{ padding: '0.3rem 0.7rem', fontSize: '0.8rem', gap: '4px' }}>
                 <Pencil size={13} /> Editar
               </button>
-              <button onClick={() => handleDelete(c.id_cliente)} style={{ background: 'var(--danger-bg)', border: 'none', color: 'var(--danger)', padding: '0.35rem 0.65rem', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem', fontWeight: 600 }}>
+              <button onClick={() => handleDelete(c.id_cliente)} className="btn-premium btn-danger" style={{ padding: '0.3rem 0.7rem', fontSize: '0.8rem', gap: '4px' }}>
                 <Trash2 size={13} /> Eliminar
               </button>
             </>
@@ -75,18 +75,18 @@ const ClientesPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex bg-[var(--bg-main)] min-h-screen">
+    <div className="app-shell">
       <Sidebar />
-      <div className="flex-1 flex flex-col ml-[240px]">
+      <div className="main-content">
         <Navbar title="Gestión de Clientes" />
         <main className="page-content">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+          <div className="page-header">
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
                 <Users size={22} color="var(--cyan)" />
-                <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>Clientes</h1>
+                <h1 className="page-title">Clientes</h1>
               </div>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{clientes.length} cliente(s) registrados</p>
+              <p className="page-subtitle">{clientes.length} cliente(s) registrado(s) en el sistema</p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
               <button onClick={loadClientes} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>

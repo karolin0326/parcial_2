@@ -52,6 +52,7 @@ def login_access_token(
     return Token(
         access_token=token,
         token_type="bearer",
+        id_usuario=usuario.id_usuario,
         rol=usuario.rol,
         nombre=usuario.nombre,
         correo=usuario.correo

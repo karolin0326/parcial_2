@@ -11,9 +11,9 @@ export const DashboardPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex bg-[var(--bg-main)] min-h-screen">
-        <Sidebar />
-        <div className="flex-1 flex flex-col ml-[240px]">
+      <div className="app-shell">
+      <Sidebar />
+      <div className="main-content">
           <Navbar title="Dashboard" />
           <div className="flex-1 flex justify-center items-center">
             <LoadingSpinner />
@@ -25,9 +25,9 @@ export const DashboardPage = () => {
 
   if (error || !data) {
     return (
-      <div className="flex bg-[var(--bg-main)] min-h-screen">
-        <Sidebar />
-        <div className="flex-1 flex flex-col ml-[240px]">
+      <div className="app-shell">
+      <Sidebar />
+      <div className="main-content">
           <Navbar title="Dashboard" />
           <div className="p-6 text-[var(--danger)]">
             Error al cargar las métricas del dashboard.
@@ -38,9 +38,9 @@ export const DashboardPage = () => {
   }
 
   return (
-    <div className="flex bg-[var(--bg-main)] min-h-screen">
+    <div className="app-shell">
       <Sidebar />
-      <div className="flex-1 flex flex-col ml-[240px]">
+      <div className="main-content">
         <Navbar title="Dashboard" />
         
         <main className="page-content">

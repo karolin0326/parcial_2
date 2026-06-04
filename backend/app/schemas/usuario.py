@@ -32,6 +32,7 @@ class UsuarioResponse(UsuarioBase):
 class Token(BaseModel):
     access_token: str
     token_type: str
+    id_usuario: int
     rol: str
     nombre: str
     correo: str

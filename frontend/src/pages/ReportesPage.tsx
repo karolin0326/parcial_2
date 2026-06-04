@@ -26,9 +26,9 @@ const ReportesPage: React.FC = () => {
   }
 
   return (
-    <div className="flex bg-[var(--bg-main)] min-h-screen">
+    <div className="app-shell">
       <Sidebar />
-      <div className="flex-1 flex flex-col ml-[240px]">
+      <div className="main-content">
         <Navbar title="Reportes" />
         <main className="page-content">
           <div style={{ marginBottom: '2rem' }}>
