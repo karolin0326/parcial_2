@@ -23,7 +23,7 @@ call venv\Scripts\activate.bat
 
 :: Instalar dependencias
 echo Instalando dependencias...
-pip install -r src\requirements.txt
+pip install -r backend\requirements.txt
 
 :: Correr la aplicacion
 echo.
@@ -32,4 +32,5 @@ echo Servidor iniciando en http://localhost:8000
 echo Documentacion API en http://localhost:8000/docs
 echo =========================================================
 echo.
-uvicorn src.main:app --reload
+cd backend
+uvicorn app.main:app --reload
