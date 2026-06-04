@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Sidebar } from '../components/common/Sidebar'
+import { Navbar } from '../components/common/Navbar'
 import axiosClient from '../api/axiosClient'
 import { Table } from '../components/common/Table'
 import { LoadingSpinner } from '../components/common/LoadingSpinner'
@@ -55,26 +57,32 @@ const AuditoriaPage: React.FC = () => {
   ]
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
-            <History size={22} color="var(--cyan)" />
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>Bitácora de Auditoría</h1>
+    <div className="flex bg-[var(--bg-main)] min-h-screen">
+      <Sidebar />
+      <div className="flex-1 flex flex-col ml-[240px]">
+        <Navbar title="Auditoría" />
+        <main className="page-content">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
+                <History size={22} color="var(--cyan)" />
+                <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>Bitácora de Auditoría</h1>
+              </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                Registro completo e inmutable de todas las acciones realizadas en el sistema
+              </p>
+            </div>
+            <button onClick={load} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>
+              <RefreshCw size={16} />
+            </button>
           </div>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Registro completo e inmutable de todas las acciones realizadas en el sistema
-          </p>
-        </div>
-        <button onClick={load} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>
-          <RefreshCw size={16} />
-        </button>
-      </div>
 
-      <div className="card-glass" style={{ padding: '1.5rem' }}>
-        {loading ? <LoadingSpinner /> : (
-          <Table columns={columns} data={logs} emptyMessage="No hay registros de auditoría aún." />
-        )}
+          <div className="card-glass" style={{ padding: '1.5rem' }}>
+            {loading ? <LoadingSpinner /> : (
+              <Table columns={columns} data={logs} emptyMessage="No hay registros de auditoría aún." />
+            )}
+          </div>
+        </main>
       </div>
     </div>
   )

@@ -40,11 +40,11 @@ export const FacturasPage = () => {
   ];
 
   return (
-    <div className="flex bg-[var(--surface)] min-h-screen">
+    <div className="flex bg-[var(--bg-main)] min-h-screen">
       <Sidebar />
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex-1 flex flex-col ml-[240px]">
         <Navbar title="Gestión de Facturas" />
-        <main className="p-6">
+        <main className="page-content">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold">Listado de Facturas</h2>
             <button 

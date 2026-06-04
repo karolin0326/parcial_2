@@ -1,4 +1,6 @@
 import React from 'react'
+import { Sidebar } from '../components/common/Sidebar'
+import { Navbar } from '../components/common/Navbar'
 import { useAlertas } from '../hooks/useAlertas'
 import { Table } from '../components/common/Table'
 import { AlertBadge } from '../components/common/AlertBadge'
@@ -66,44 +68,50 @@ const AlertasPage: React.FC = () => {
   ]
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
-            <ShieldAlert size={22} color="var(--danger)" />
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>
-              Alertas de IA
-            </h1>
+    <div className="flex bg-[var(--bg-main)] min-h-screen">
+      <Sidebar />
+      <div className="flex-1 flex flex-col ml-[240px]">
+        <Navbar title="Gestión de Alertas" />
+        <main className="page-content">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
+                <ShieldAlert size={22} color="var(--danger)" />
+                <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>
+                  Alertas de IA
+                </h1>
+              </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                Anomalías detectadas automáticamente por el motor Isolation Forest
+              </p>
+            </div>
+            <button onClick={fetchAlertas} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>
+              <RefreshCw size={16} />
+            </button>
           </div>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            Anomalías detectadas automáticamente por el motor Isolation Forest
-          </p>
-        </div>
-        <button onClick={fetchAlertas} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>
-          <RefreshCw size={16} />
-        </button>
-      </div>
 
-      {error && (
-        <div style={{
-          background: 'var(--danger-bg)', border: '1px solid var(--danger-border)',
-          color: 'var(--danger)', padding: '0.9rem 1.25rem',
-          borderRadius: '10px', marginBottom: '1.5rem', fontSize: '0.9rem'
-        }}>
-          ⚠️ {error}
-        </div>
-      )}
+          {error && (
+            <div style={{
+              background: 'var(--danger-bg)', border: '1px solid var(--danger-border)',
+              color: 'var(--danger)', padding: '0.9rem 1.25rem',
+              borderRadius: '10px', marginBottom: '1.5rem', fontSize: '0.9rem'
+            }}>
+              ⚠️ {error}
+            </div>
+          )}
 
-      <div className="card-glass" style={{ padding: '1.5rem' }}>
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <Table
-            columns={columns}
-            data={alertas}
-            emptyMessage="No hay alertas activas. El sistema está operando con normalidad. ✅"
-          />
-        )}
+          <div className="card-glass" style={{ padding: '1.5rem' }}>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <Table
+                columns={columns}
+                data={alertas}
+                emptyMessage="No hay alertas activas. El sistema está operando con normalidad. ✅"
+              />
+            )}
+          </div>
+        </main>
       </div>
     </div>
   )

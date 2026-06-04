@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Sidebar } from '../components/common/Sidebar'
+import { Navbar } from '../components/common/Navbar'
 import { clientesApi } from '../api/clientes.api'
 import { ClienteResponse, ClienteCreate } from '../types/cliente.types'
 import { Table } from '../components/common/Table'
@@ -73,34 +75,40 @@ const ClientesPage: React.FC = () => {
   ]
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
-            <Users size={22} color="var(--cyan)" />
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>Clientes</h1>
+    <div className="flex bg-[var(--bg-main)] min-h-screen">
+      <Sidebar />
+      <div className="flex-1 flex flex-col ml-[240px]">
+        <Navbar title="Gestión de Clientes" />
+        <main className="page-content">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
+                <Users size={22} color="var(--cyan)" />
+                <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', letterSpacing: '-0.02em' }}>Clientes</h1>
+              </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{clientes.length} cliente(s) registrados</p>
+            </div>
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <button onClick={loadClientes} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>
+                <RefreshCw size={16} />
+              </button>
+              {canWrite && (
+                <button id="btn-nuevo-cliente" onClick={openCreate} className="btn-premium btn-primary-glow">
+                  <Plus size={18} /> Nuevo Cliente
+                </button>
+              )}
+            </div>
           </div>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{clientes.length} cliente(s) registrados</p>
-        </div>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button onClick={loadClientes} className="btn-premium btn-secondary-outline" style={{ padding: '0.65rem 1rem' }}>
-            <RefreshCw size={16} />
-          </button>
-          {canWrite && (
-            <button id="btn-nuevo-cliente" onClick={openCreate} className="btn-premium btn-primary-glow">
-              <Plus size={18} /> Nuevo Cliente
-            </button>
-          )}
-        </div>
-      </div>
 
-      <div className="card-glass" style={{ padding: '1.5rem' }}>
-        {loading ? <LoadingSpinner /> : <Table columns={columns} data={clientes} emptyMessage="No hay clientes registrados." />}
-      </div>
+          <div className="card-glass" style={{ padding: '1.5rem' }}>
+            {loading ? <LoadingSpinner /> : <Table columns={columns} data={clientes} emptyMessage="No hay clientes registrados." />}
+          </div>
 
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={editTarget ? 'Editar Cliente' : 'Nuevo Cliente'}>
-        <ClienteForm onSubmit={handleSubmit} onClose={() => setShowModal(false)} initial={editTarget} />
-      </Modal>
+          <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={editTarget ? 'Editar Cliente' : 'Nuevo Cliente'}>
+            <ClienteForm onSubmit={handleSubmit} onClose={() => setShowModal(false)} initial={editTarget} />
+          </Modal>
+        </main>
+      </div>
     </div>
   )
 }

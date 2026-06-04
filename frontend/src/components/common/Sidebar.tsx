@@ -19,51 +19,45 @@ export const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-gray-900 text-white flex flex-col h-screen fixed left-0 top-0">
-      <div className="p-6">
-        <h1 className="text-2xl font-bold text-[var(--primary-light)] flex items-center gap-2">
-          <Shield className="w-8 h-8 text-[var(--primary)]" />
-          SysIA
-        </h1>
+    <aside className="sidebar">
+      <div className="sidebar-logo">
+        <div className="flex items-center gap-2">
+          <Shield className="w-7 h-7 text-[var(--primary)]" />
+          <div className="sidebar-logo-title">SysIA</div>
+        </div>
+        <div className="sidebar-logo-sub">Monitoreo Contable</div>
       </div>
-      <nav className="flex-1 px-4 space-y-2 overflow-y-auto">
+      
+      <nav className="sidebar-nav">
+        <div className="sidebar-section-label">Menú Principal</div>
         {links.filter(link => hasRole(link.roles as any)).map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive ? 'bg-[var(--primary)] text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-              }`
-            }
+            className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
           >
-            <link.icon className="w-5 h-5" />
-            <span className="flex-1">{link.label}</span>
+            <link.icon />
+            <span style={{ flex: 1 }}>{link.label}</span>
             {link.badge && alertasPendientes > 0 && (
-              <span className="bg-[var(--danger)] text-white text-xs font-bold px-2 py-1 rounded-full">
+              <span className="bg-[var(--danger)] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                 {alertasPendientes}
               </span>
             )}
           </NavLink>
         ))}
       </nav>
-      <div className="p-4 border-t border-gray-800">
-        <div className="flex items-center gap-3 mb-4 px-2">
-          <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-lg">
+      
+      <div className="sidebar-footer">
+        <div className="user-chip" onClick={logout} title="Cerrar Sesión">
+          <div className="user-avatar">
             {usuario?.nombre?.charAt(0).toUpperCase()}
           </div>
-          <div>
-            <p className="text-sm font-medium">{usuario?.nombre}</p>
-            <p className="text-xs text-gray-500 capitalize">{usuario?.rol}</p>
+          <div style={{ flex: 1 }}>
+            <div className="user-info-name">{usuario?.nombre}</div>
+            <div className="user-info-role capitalize">{usuario?.rol}</div>
           </div>
+          <LogOut size={16} className="text-[var(--text-muted)] hover:text-[var(--danger)] transition-colors" />
         </div>
-        <button
-          onClick={logout}
-          className="w-full flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors"
-        >
-          <LogOut className="w-5 h-5" />
-          Cerrar Sesión
-        </button>
       </div>
     </aside>
   );
