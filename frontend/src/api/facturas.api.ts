@@ -19,7 +19,7 @@ export const facturasApi = {
   },
   // CU-03 | RF-01 | E12 - anularFactura()
   anular: async (id: number): Promise<FacturaResponse> => {
-    const { data } = await axiosClient.post(`/facturas/${id}/anular`);
+    const { data } = await axiosClient.put(`/facturas/${id}/anular`);
     return data;
   }
 };

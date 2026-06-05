@@ -32,7 +32,7 @@ export const useAnularFactura = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: number) => {
-      const { data } = await axiosClient.post(`/facturas/${id}/anular`);
+      const { data } = await axiosClient.put(`/facturas/${id}/anular`);
       return data;
     },
     onSuccess: () => {

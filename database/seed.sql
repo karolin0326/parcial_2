@@ -13,9 +13,9 @@ ON DUPLICATE KEY UPDATE nombre=VALUES(nombre);
 -- SEMILLA: USUARIOS BASE (Contraseña por defecto: 'admin123' -> hash bcrypt)
 -- =========================================
 INSERT INTO usuario (id_usuario, nombre, correo, contrasenia_hash, rol, id_estado) VALUES
-(1, 'Administrador del Sistema', 'admin@empresa.com', '$2b$12$EixZaYVK1fsAH1yp4.7G2O376K/j.dF/XGepH76U8rJ82u1YV4t7.', 'Administrador', 1),
-(2, 'Carlos Contador', 'contador@empresa.com', '$2b$12$EixZaYVK1fsAH1yp4.7G2O376K/j.dF/XGepH76U8rJ82u1YV4t7.', 'Contador', 1),
-(3, 'Ana Auditora', 'auditor@empresa.com', '$2b$12$EixZaYVK1fsAH1yp4.7G2O376K/j.dF/XGepH76U8rJ82u1YV4t7.', 'Auditor', 1)
+(1, 'Administrador del Sistema', 'admin@empresa.com', '$2b$12$qZgqJMtadoGOFLGMFH5F2eWfNPLxVE5Z.sIcpiwwaf6.gL/.IzjFO', 'Administrador', 1),
+(2, 'Carlos Contador', 'contador@empresa.com', '$2b$12$qZgqJMtadoGOFLGMFH5F2eWfNPLxVE5Z.sIcpiwwaf6.gL/.IzjFO', 'Contador', 1),
+(3, 'Ana Auditora', 'auditor@empresa.com', '$2b$12$qZgqJMtadoGOFLGMFH5F2eWfNPLxVE5Z.sIcpiwwaf6.gL/.IzjFO', 'Auditor', 1)
 ON DUPLICATE KEY UPDATE nombre=VALUES(nombre), correo=VALUES(correo), contrasenia_hash=VALUES(contrasenia_hash), rol=VALUES(rol), id_estado=VALUES(id_estado);
 
 -- =========================================
